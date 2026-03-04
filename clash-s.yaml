@@ -1,0 +1,83 @@
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: rule
+log-level: info
+
+proxies:
+  - name: KR-高速常用
+    type: ss
+    server: 168.107.4.28
+    port: 56448
+    cipher: chacha20-ietf
+    password: qwer789123
+    udp: true
+
+  - name: KR-隱身
+    type: vmess
+    server: 158.180.72.167
+    port: 62705
+    uuid: a92cad63-4ab5-43e1-8bc0-97fc9d7949d4
+    alterId: 0
+    cipher: auto
+    udp: true
+
+proxy-groups:
+  - name: 🚀節點選擇
+    type: select
+    proxies:
+      - ⚡自動選擇
+      - KR-高速常用
+      - KR-隱身
+      - DIRECT
+
+  - name: ⚡自動選擇
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - KR-高速常用
+      - KR-隱身
+
+  - name: 🌍國外網站
+    type: select
+    proxies:
+      - 🚀節點選擇
+      - ⚡自動選擇
+      - DIRECT
+
+  - name: 🍎蘋果服務
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀節點選擇
+
+  - name: 📲Telegram
+    type: select
+    proxies:
+      - 🚀節點選擇
+      - ⚡自動選擇
+
+  - name: 🤖OpenAI
+    type: select
+    proxies:
+      - 🚀節點選擇
+      - ⚡自動選擇
+
+rules:
+  - DOMAIN-SUFFIX,openai.com,🤖OpenAI
+  - DOMAIN-SUFFIX,chatgpt.com,🤖OpenAI
+
+  - DOMAIN-SUFFIX,telegram.org,📲Telegram
+  - DOMAIN-SUFFIX,t.me,📲Telegram
+
+  - DOMAIN-SUFFIX,apple.com,🍎蘋果服務
+  - DOMAIN-SUFFIX,icloud.com,🍎蘋果服務
+
+  - DOMAIN-SUFFIX,google.com,🌍國外網站
+  - DOMAIN-SUFFIX,youtube.com,🌍國外網站
+  - DOMAIN-SUFFIX,github.com,🌍國外網站
+  - DOMAIN-SUFFIX,netflix.com,🌍國外網站
+
+  - GEOIP,CN,DIRECT
+  - MATCH,🚀節點選擇
