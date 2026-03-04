@@ -46,6 +46,13 @@ proxy-groups:
       - ⚡自動選擇
       - DIRECT
 
+  - name: 🎬串流影音
+  type: select
+  proxies:
+    - 🚀節點選擇
+    - ⚡自動選擇
+    - DIRECT
+
   - name: 🍎蘋果服務
     type: select
     proxies:
