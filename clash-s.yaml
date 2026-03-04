@@ -65,22 +65,18 @@ proxy-groups:
       - ⚡自動選擇
 
 rules:
-  # Microsoft / Office / Windows 直連
+
+  # Microsoft / Office / Windows
   - DOMAIN-SUFFIX,microsoft.com,DIRECT
   - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
   - DOMAIN-SUFFIX,live.com,DIRECT
   - DOMAIN-SUFFIX,office.com,DIRECT
-  - DOMAIN-SUFFIX,office.net,DIRECT
   - DOMAIN-SUFFIX,office365.com,DIRECT
   - DOMAIN-SUFFIX,outlook.com,DIRECT
   - DOMAIN-SUFFIX,sharepoint.com,DIRECT
   - DOMAIN-SUFFIX,onedrive.com,DIRECT
   - DOMAIN-SUFFIX,skype.com,DIRECT
   - DOMAIN-SUFFIX,teams.microsoft.com,DIRECT
-  - DOMAIN-SUFFIX,msauth.net,DIRECT
-  - DOMAIN-SUFFIX,msftauth.net,DIRECT
-  - DOMAIN-SUFFIX,msftauthimages.net,DIRECT
-  - DOMAIN-SUFFIX,windows.com,DIRECT
   - DOMAIN-SUFFIX,windowsupdate.com,DIRECT
   - DOMAIN-SUFFIX,windowsupdate.microsoft.com,DIRECT
   - DOMAIN-SUFFIX,update.microsoft.com,DIRECT
@@ -91,20 +87,51 @@ rules:
   - DOMAIN-SUFFIX,azure.com,DIRECT
   - DOMAIN-SUFFIX,azureedge.net,DIRECT
   - DOMAIN-SUFFIX,visualstudio.com,DIRECT
-  
+
+  # Apple
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,itunes.com,DIRECT
+  - DOMAIN-SUFFIX,applecdn.com,DIRECT
+
+  # OpenAI
   - DOMAIN-SUFFIX,openai.com,🤖OpenAI
   - DOMAIN-SUFFIX,chatgpt.com,🤖OpenAI
 
+  # Telegram
   - DOMAIN-SUFFIX,telegram.org,📲Telegram
   - DOMAIN-SUFFIX,t.me,📲Telegram
+  - DOMAIN-SUFFIX,telegram.me,📲Telegram
 
-  - DOMAIN-SUFFIX,apple.com,🍎蘋果服務
-  - DOMAIN-SUFFIX,icloud.com,🍎蘋果服務
+  # Streaming
+  - DOMAIN-SUFFIX,netflix.com,🎬串流影音
+  - DOMAIN-SUFFIX,nflxvideo.net,🎬串流影音
+  - DOMAIN-SUFFIX,disneyplus.com,🎬串流影音
+  - DOMAIN-SUFFIX,disney-plus.net,🎬串流影音
+  - DOMAIN-SUFFIX,youtube.com,🎬串流影音
+  - DOMAIN-SUFFIX,googlevideo.com,🎬串流影音
 
-  - DOMAIN-SUFFIX,google.com,🌍國外網站
-  - DOMAIN-SUFFIX,youtube.com,🌍國外網站
+  # Social Media
+  - DOMAIN-SUFFIX,tiktok.com,🌍國外網站
+  - DOMAIN-SUFFIX,tiktokcdn.com,🌍國外網站
+  - DOMAIN-SUFFIX,instagram.com,🌍國外網站
+  - DOMAIN-SUFFIX,facebook.com,🌍國外網站
+  - DOMAIN-SUFFIX,fbcdn.net,🌍國外網站
+  - DOMAIN-SUFFIX,whatsapp.com,🌍國外網站
+
+  # Developer / GitHub
   - DOMAIN-SUFFIX,github.com,🌍國外網站
-  - DOMAIN-SUFFIX,netflix.com,🌍國外網站
+  - DOMAIN-SUFFIX,githubusercontent.com,🌍國外網站
 
+  # Google
+  - DOMAIN-SUFFIX,google.com,🌍國外網站
+  - DOMAIN-SUFFIX,googleapis.com,🌍國外網站
+  - DOMAIN-SUFFIX,gstatic.com,🌍國外網站
+
+  # 中國 IP
   - GEOIP,CN,DIRECT
+
+  # 最終
   - MATCH,🚀節點選擇
+
+  
