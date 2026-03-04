@@ -1,0 +1,28 @@
+proxies:
+  - name: "KR-高速常用"
+    type: ss
+    server: 168.107.4.28
+    port: 56448
+    cipher: chacha20-ietf
+    password: qwer789123
+    udp: true
+
+  - name: "KR-隱身"
+    type: vmess
+    server: 158.180.72.167
+    port: 62705
+    uuid: a92cad63-4ab5-43e1-8bc0-97fc9d7949d4
+    alterId: 0
+    cipher: auto
+    udp: true
+
+proxy-groups:
+  - name: Proxy
+    type: select
+    proxies:
+      - KR-高速常用
+      - KR-隱身
+      - DIRECT
+
+rules:
+  - MATCH,Proxy
