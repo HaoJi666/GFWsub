@@ -4,233 +4,46 @@ allow-lan: true
 mode: rule
 log-level: info
 
-# ====== 你的節點 ======
 proxies:
-  - name: "KR-高速常用"
+  - name: KR-高速常用
     type: ss
     server: 168.107.4.28
     port: 56448
     cipher: chacha20-ietf
-    password: "qwer789123"
-    udp: true
+    password: qwer789123
 
-  - name: "KR-隱身"
+  - name: KR-隱身
     type: vmess
     server: 158.180.72.167
     port: 62705
-    uuid: "a92cad63-4ab5-43e1-8bc0-97fc9d7949d4"
+    uuid: a92cad63-4ab5-43e1-8bc0-97fc9d7949d4
     alterId: 0
     cipher: auto
-    udp: true
 
-# ====== 策略組（你截圖那種「節點選擇 / 自動選擇 / 影片 / 蘋果 / 微軟 / 電報...」） ======
 proxy-groups:
-  - name: "🚀 節點選擇"
+  - name: 🚀 节点选择
     type: select
     proxies:
-      - "⚡ 自動選擇"
-      - "KR-高速常用"
-      - "KR-隱身"
+      - KR-高速常用
+      - KR-隱身
       - DIRECT
 
-  - name: "⚡ 自動選擇"
-    type: url-test
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-    proxies:
-      - "KR-高速常用"
-      - "KR-隱身"
-
-  - name: "🌍 外媒體"
+  - name: 🌍 国外媒体
     type: select
     proxies:
-      - "🚀 節點選擇"
-      - "⚡ 自動選擇"
-      - DIRECT
+      - 🚀 节点选择
+      - KR-高速常用
+      - KR-隱身
 
-  - name: "🍎 蘋果服務"
+  - name: 🍎 苹果服务
     type: select
     proxies:
       - DIRECT
-      - "🚀 節點選擇"
+      - 🚀 节点选择
 
-  - name: "🪟 微軟服務"
-    type: select
-    proxies:
-      - DIRECT
-      - "🚀 節點選擇"
-
-  - name: "📨 Telegram"
-    type: select
-    proxies:
-      - "🚀 節點選擇"
-      - "⚡ 自動選擇"
-      - DIRECT
-
-  - name: "🔎 Google"
-    type: select
-    proxies:
-      - "🚀 節點選擇"
-      - "⚡ 自動選擇"
-      - DIRECT
-
-  - name: "🎬 串流影音"
-    type: select
-    proxies:
-      - "🌍 外媒體"
-      - "🚀 節點選擇"
-      - "⚡ 自動選擇"
-      - DIRECT
-
-  - name: "🤖 OpenAI"
-    type: select
-    proxies:
-      - "🚀 節點選擇"
-      - "⚡ 自動選擇"
-      - DIRECT
-
-  - name: "🧱 廣告攔截"
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-
-# ====== 規則集（rule-providers） ======
-rule-providers:
-  # --- 基礎（Loyalsoldier）---
-  reject:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
-    path: "./ruleset/reject.yaml"
-    interval: 86400
-
-  private:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
-    path: "./ruleset/private.yaml"
-    interval: 86400
-
-  direct:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
-    path: "./ruleset/direct.yaml"
-    interval: 86400
-
-  proxy:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
-    path: "./ruleset/proxy.yaml"
-    interval: 86400
-
-  gfw:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
-    path: "./ruleset/gfw.yaml"
-    interval: 86400
-
-  tld-not-cn:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt"
-    path: "./ruleset/tld-not-cn.yaml"
-    interval: 86400
-
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt"
-    path: "./ruleset/telegramcidr.yaml"
-    interval: 86400
-
-  lancidr:
-    type: http
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
-    path: "./ruleset/lancidr.yaml"
-    interval: 86400
-
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
-    path: "./ruleset/cncidr.yaml"
-    interval: 86400
-
-  # --- 服務分流（blackmatrix7 ios_rule_script）---
-  Apple:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"
-    path: "./ruleset/Apple.yaml"
-    interval: 86400
-
-  Microsoft:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml"
-    path: "./ruleset/Microsoft.yaml"
-    interval: 86400
-
-  Google:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml"
-    path: "./ruleset/Google.yaml"
-    interval: 86400
-
-  Telegram:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml"
-    path: "./ruleset/Telegram.yaml"
-    interval: 86400
-
-  GlobalMedia:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml"
-    path: "./ruleset/GlobalMedia.yaml"
-    interval: 86400
-
-  OpenAI:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
-    path: "./ruleset/OpenAI.yaml"
-    interval: 86400
-
-# ====== 規則（rules） ======
 rules:
-  # 廣告
-  - RULE-SET,reject,🧱 廣告攔截
-
-  # 基礎私有/直連
-  - RULE-SET,private,DIRECT
-  - RULE-SET,direct,DIRECT
-
-  # 服務分流（像你截圖那種）
-  - RULE-SET,Apple,🍎 蘋果服務
-  - RULE-SET,Microsoft,🪟 微軟服務
-  - RULE-SET,Google,🔎 Google
-  - RULE-SET,Telegram,📨 Telegram
-  - RULE-SET,OpenAI,🤖 OpenAI
-  - RULE-SET,GlobalMedia,🎬 串流影音
-
-  # GFW / 非中國頂級域名 → 走代理
-  - RULE-SET,gfw,🚀 節點選擇
-  - RULE-SET,proxy,🚀 節點選擇
-  - RULE-SET,tld-not-cn,🚀 節點選擇
-
-  # IP 分流
-  - RULE-SET,telegramcidr,📨 Telegram
-  - RULE-SET,lancidr,DIRECT
-  - RULE-SET,cncidr,DIRECT
-
-  # 兜底
-  - MATCH,🚀 節點選擇
+  - DOMAIN-SUFFIX,google.com,🚀 节点选择
+  - DOMAIN-SUFFIX,youtube.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,apple.com,🍎 苹果服务
+  - GEOIP,CN,DIRECT
+  - MATCH,🚀 节点选择
