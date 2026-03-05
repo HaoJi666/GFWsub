@@ -58,6 +58,14 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🚀節點選擇
+      - ⚡自動選擇
+
+  - name: 🪟微軟服務
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀節點選擇
+      - ⚡自動選擇
 
   - name: 📲Telegram
     type: select
@@ -74,32 +82,32 @@ proxy-groups:
 rules:
 
   # Microsoft / Office / Windows
-  - DOMAIN-SUFFIX,microsoft.com,DIRECT
-  - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
-  - DOMAIN-SUFFIX,live.com,DIRECT
-  - DOMAIN-SUFFIX,office.com,DIRECT
-  - DOMAIN-SUFFIX,office365.com,DIRECT
-  - DOMAIN-SUFFIX,outlook.com,DIRECT
-  - DOMAIN-SUFFIX,sharepoint.com,DIRECT
-  - DOMAIN-SUFFIX,onedrive.com,DIRECT
-  - DOMAIN-SUFFIX,skype.com,DIRECT
-  - DOMAIN-SUFFIX,teams.microsoft.com,DIRECT
-  - DOMAIN-SUFFIX,windowsupdate.com,DIRECT
-  - DOMAIN-SUFFIX,windowsupdate.microsoft.com,DIRECT
-  - DOMAIN-SUFFIX,update.microsoft.com,DIRECT
-  - DOMAIN-SUFFIX,download.windowsupdate.com,DIRECT
-  - DOMAIN-SUFFIX,store.microsoft.com,DIRECT
-  - DOMAIN-SUFFIX,xbox.com,DIRECT
-  - DOMAIN-SUFFIX,xboxlive.com,DIRECT
-  - DOMAIN-SUFFIX,azure.com,DIRECT
-  - DOMAIN-SUFFIX,azureedge.net,DIRECT
-  - DOMAIN-SUFFIX,visualstudio.com,DIRECT
+  - DOMAIN-SUFFIX,microsoft.com,🪟微軟服務
+  - DOMAIN-SUFFIX,microsoftonline.com,🪟微軟服務
+  - DOMAIN-SUFFIX,live.com,🪟微軟服務
+  - DOMAIN-SUFFIX,office.com,🪟微軟服務
+  - DOMAIN-SUFFIX,office365.com,🪟微軟服務
+  - DOMAIN-SUFFIX,outlook.com,🪟微軟服務
+  - DOMAIN-SUFFIX,sharepoint.com,🪟微軟服務
+  - DOMAIN-SUFFIX,onedrive.com,🪟微軟服務
+  - DOMAIN-SUFFIX,skype.com,🪟微軟服務
+  - DOMAIN-SUFFIX,teams.microsoft.com,🪟微軟服務
+  - DOMAIN-SUFFIX,windowsupdate.com,🪟微軟服務
+  - DOMAIN-SUFFIX,windowsupdate.microsoft.com,🪟微軟服務
+  - DOMAIN-SUFFIX,update.microsoft.com,🪟微軟服務
+  - DOMAIN-SUFFIX,download.windowsupdate.com,🪟微軟服務
+  - DOMAIN-SUFFIX,store.microsoft.com,🪟微軟服務
+  - DOMAIN-SUFFIX,xbox.com,🪟微軟服務
+  - DOMAIN-SUFFIX,xboxlive.com,🪟微軟服務
+  - DOMAIN-SUFFIX,azure.com,🪟微軟服務
+  - DOMAIN-SUFFIX,azureedge.net,🪟微軟服務
+  - DOMAIN-SUFFIX,visualstudio.com,🪟微軟服務
 
   # Apple
-  - DOMAIN-SUFFIX,apple.com,DIRECT
-  - DOMAIN-SUFFIX,icloud.com,DIRECT
-  - DOMAIN-SUFFIX,itunes.com,DIRECT
-  - DOMAIN-SUFFIX,applecdn.com,DIRECT
+  - DOMAIN-SUFFIX,apple.com,🍎蘋果服務
+  - DOMAIN-SUFFIX,icloud.com,🍎蘋果服務
+  - DOMAIN-SUFFIX,itunes.com,🍎蘋果服務
+  - DOMAIN-SUFFIX,applecdn.com,🍎蘋果服務
 
   # OpenAI
   - DOMAIN-SUFFIX,openai.com,🤖OpenAI
@@ -135,10 +143,13 @@ rules:
   - DOMAIN-SUFFIX,googleapis.com,🌍國外網站
   - DOMAIN-SUFFIX,gstatic.com,🌍國外網站
 
-  # 中國 IP
+  # LAN
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+
+  # China
   - GEOIP,CN,DIRECT
 
-  # 最終
+  # Final
   - MATCH,🚀節點選擇
-
-  
